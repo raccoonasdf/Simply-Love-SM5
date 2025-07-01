@@ -86,6 +86,8 @@ local af = Def.ActorFrame{
 	LoadActor("./EscapeFromEventMode.lua"),
 
 	LoadActor("./SongSearch/default.lua"),
+
+	LoadActor("./LetterShortcuts.lua"),
 }
 
 return af
