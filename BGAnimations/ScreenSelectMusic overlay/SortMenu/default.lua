@@ -48,7 +48,7 @@ local GetBpmTier = function(bpm)
 end
 
 local SongSearchSettings = {
-	Question="'pack/song' format will search for songs in specific packs\n'[###]' format will search for BPMs/Difficulties",
+	Question="{pack/}{artist:}title  to search by song metadata\n[###]  to search by BPM or difficulty",
 	InitialAnswer="",
 	MaxInputLength=30,
 	OnOK=function(input)
@@ -78,6 +78,7 @@ local SongSearchSettings = {
 		-- The we separate out the pack and song into their own search terms.
 		local packName = nil
 		local songName = nil
+		local artistName = nil
 
 		local forwardSlashIdx = searchText:find('/')
 		if not forwardSlashIdx then
@@ -87,12 +88,19 @@ local SongSearchSettings = {
 			songName = searchText:sub(forwardSlashIdx + 1)
 		end
 
+		local colonIdx = songName:find(':')
+		if colonIdx then
+			artistName = songName:sub(1, colonIdx-1)
+			songName = songName:sub(colonIdx+1)
+		end
+
 		-- Normalize empty strings to nil.
 		if packName and #packName == 0 then packName = nil end
 		if songName and #songName == 0 then songName = nil end
+		if artistName and #artistName == 0 then artistName = nil end
 
 		-- If we have no search criteria, then return early.
-		if not (packName or songName or difficulty or bpmTier) then return end
+		if not (packName or songName or artistName or difficulty or bpmTier) then return end
 
 		-- Start with the complete song list.
 		local candidates = SONGMAN:GetAllSongs()
@@ -110,6 +118,12 @@ local SongSearchSettings = {
 
 		if packName then
 			FilterTable(candidates, function(song) return song:GetGroupName():lower():find(packName) end)
+		end
+
+		if artistName then
+			FilterTable(candidates, function(song)
+				return song:GetDisplayArtist():lower():find(artistName) or song:GetTranslitArtist():lower():find(artistName)
+			end)
 		end
 
 		if difficulty then
