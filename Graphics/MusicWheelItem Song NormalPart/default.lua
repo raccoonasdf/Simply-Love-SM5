@@ -25,7 +25,12 @@ af[#af+1] = Def.Sprite{
 
 af[#af+1] = Def.Banner{
 	InitCommand=function(self)
-		self:SetDecodeMovie(false):scaletoclipped(item_h*itg_banner_ar,item_h):faderight(WideScale(0.5, 0)):x(40.5):diffusealpha(0.5)
+		self:SetDecodeMovie(false):scaletoclipped(item_h*itg_banner_ar,item_h):faderight(WideScale(0.5, 0)):x(40.5)
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffusealpha(0.75)
+		else
+			self:diffusealpha(0.5)
+		end
 	end,
 	SetCommand=function(self, params)
 		if self and params.Song and params.Song:GetBannerPath() then

@@ -71,6 +71,10 @@ return Def.ActorFrame{
 				return
 			end
 
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(1)
+			end
+
 			self:visible(true):setstate(state)
 		end
 	},

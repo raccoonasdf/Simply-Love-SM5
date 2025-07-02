@@ -12,6 +12,9 @@ return Def.ActorFrame {
     Def.Quad {
         InitCommand = function(self)
             self:horizalign(left):diffuse(0, 10 / 255, 17 / 255, 0.5):zoomto(item_width, _screen.h / num_visible_items)
+            if ThemePrefs.Get("RainbowMode") then
+                self:visible(false)
+            end
         end
     },
     Def.Quad {
@@ -25,11 +28,6 @@ return Def.ActorFrame {
 			if params.Song then
 				local song = params.Song
 				local offset = round(SONGMAN:GetGroup(song):GetSyncOffset(), 3)
-				if offset == -0.009 then
-					self:diffuserightedge(DarkUI() and {1, 1, 1, 0.5} or {10 / 255, 20 / 255, 27 / 255, 1})
-				else
-					self:diffuserightedge(DarkUI() and {1, 0.5, 0.5, 0.5} or {80 / 255, 20 / 255, 27 / 255, 1})
-				end
 				if ThemePrefs.Get("VisualStyle") == "SRPG9" or ThemePrefs.Get("VisualStyle") == "Technique" then
 					self:diffusealpha(0.5)
 				end
