@@ -117,7 +117,7 @@ return Def.ActorFrame{
 				sprite:rotationz(direction * offset)
 			end
 			-- this should match the custom JudgmentTween() from SL for 3.95
-			sprite:zoom(0.8):zoomy(1):decelerate(0.1):zoomy(0.8):sleep(0.6):accelerate(0.2):zoomy(0)
+			sprite:vertalign(bottom):y(sprite:GetHeight()/2):zoom(0.9):zoomy(1):decelerate(0.1):zoomy(0.9):sleep(0.6):accelerate(0.2):zoomy(0)
 		end
 	end,
 	JudgmentMessageCommand=function(self, param)
@@ -198,7 +198,7 @@ return Def.ActorFrame{
 			end
 		end
 		-- this should match the custom JudgmentTween() from SL for 3.95
-		sprite:zoom(0.8):zoomy(1):decelerate(0.1):zoomy(0.8):sleep(0.6):accelerate(0.2):zoomy(0)
+		sprite:vertalign(bottom):y(sprite:GetHeight()/2):zoom(0.9):zoomy(1):decelerate(0.1):zoomy(0.9):sleep(0.6):accelerate(0.2):zoomy(0)
 	end,
 
 	Def.Sprite{

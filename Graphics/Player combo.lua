@@ -49,6 +49,7 @@ local combo_bmt = LoadFont("_Combo Fonts/" .. combo_font .."/" .. combo_font)..{
 	ComboCommand=function(self, params)
 		self:settext( params.Combo or params.Misses or "" )
 		self:diffuseshift():effectperiod(0.8):playcommand("Color", params)
+		self:vertalign(bottom):y(self:GetHeight()/2):zoom(0.9):zoomy(1):decelerate(0.1):zoomy(0.9)
 	end,
 	ColorCommand=function(self, params)
 		-- Though this if/else chain may seem strange (why not reduce it to a single table for quick lookup?)

@@ -128,7 +128,10 @@ return LoadFont("Wendy/_wendy monospace numbers")..{
 			end
 		end
 	end,
-	JudgmentMessageCommand=function(self)
+	JudgmentMessageCommand=function(self, params)
+		if params.Notes then
+			self:zoomy(0.6):decelerate(0.1):zoomy(0.5)
+		end
 		self:queuecommand("RedrawScore")
 	end,
 	RedrawScoreCommand=function(self)

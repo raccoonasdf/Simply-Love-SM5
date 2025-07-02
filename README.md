@@ -23,7 +23,7 @@ your own theme!
 - makes the header bar during gameplay an overlay instead of an underlay. this
   is because i like measure lines enabled but i don't like them being drawn over
   top of the header bar
-- puts judgments underneath the notes and makes their pop-in effect more
-  vertically stretchy because i think it's fun :)
+- puts judgments underneath the notes
+- makes judgment, score, combo, and pacemaker bouncier :)
 - adds little banner previews on the music wheel for songs and packs
 - adds an artist filter to the search menu
