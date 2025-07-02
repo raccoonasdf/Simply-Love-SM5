@@ -1,6 +1,10 @@
 -- the MusicWheelItem for CourseMode contains the basic colored Quads
 -- use that as a common base, and add in a Sprite for "Has Edit"
 local af = LoadActor("../MusicWheelItem Course NormalPart.lua")
+local num_items = THEME:GetMetric("MusicWheel", "NumWheelItems")
+local num_visible_items = num_items - 2
+local item_h = _screen.h/num_visible_items
+local itg_banner_ar = 418/164
 
 local stepstype = GAMESTATE:GetCurrentStyle():GetStepsType()
 
@@ -16,6 +20,17 @@ af[#af+1] = Def.Sprite{
 	end,
 	SetCommand=function(self, params)
 		self:visible(params.Song and params.Song:HasEdits(stepstype) or false)
+	end
+}
+
+af[#af+1] = Def.Banner{
+	InitCommand=function(self)
+		self:SetDecodeMovie(false):scaletoclipped(item_h*itg_banner_ar,item_h):x(40.5)--[[:x(_screen.w/(WideScale(2.15, 2.14)) - (item_h*itg_banner_ar))]]:diffusealpha(0.5)
+	end,
+	SetCommand=function(self, params)
+		if self and params.Song and params.Song:GetBannerPath() then
+			self:LoadFromCached("Banner", params.Song:GetBannerPath())
+		end
 	end
 }
 
