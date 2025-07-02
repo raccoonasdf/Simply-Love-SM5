@@ -21,7 +21,24 @@ local af = Def.ActorFrame{}
 af[#af+1] = LoadActor("./WhoIsCurrentlyWinning.lua")
 af[#af+1] = LoadActor("./FailOnHoldStart.lua")
 
+-- UI elements shared by both players
+af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/VersusStepStatistics.lua")
+af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/Header.lua")
+af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/SongInfoBar.lua") -- song title and progress bar
+
 for player in ivalues( GAMESTATE:GetHumanPlayers() ) do
+	-- Tournament Mode modifications. Put this before everything as it sets
+	-- player mods and other actors below might depend on it.
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/TournamentMode.lua", player)
+
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/UpperNPSGraph.lua", player)
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/Score.lua", player)
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/DifficultyMeter.lua", player)
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/LifeMeter/default.lua", player)
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/TargetScore/default.lua", player)
+
+	-- All NoteField specific actors are contained in this file.
+	af[#af+1] = LoadActor("../ScreenGameplay underlay/PerPlayer/NoteField/default.lua", player)
 
 	local pn = ToEnumShortString(player)
 
@@ -45,5 +62,8 @@ for player in ivalues( GAMESTATE:GetHumanPlayers() ) do
 	--        the Lua input callback logic shouldn't be duplicated for each player
 	af[#af+1] = LoadActor("./PerColumnJudgmentTracking.lua", player)
 end
+
+-- add to the ActorFrame last; overlapped by StepStatistics otherwise
+af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/BPMDisplay.lua")
 
 return af
