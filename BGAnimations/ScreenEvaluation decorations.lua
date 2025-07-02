@@ -36,6 +36,7 @@ af[#af+1] = LoadFont("Wendy/_wendy monospace numbers")..{
 
 		self:x(_screen.cx):horizalign(center)
 		self:zoom(0.18)
+		self:shadowlength(1)
 	end,
 	OnCommand=function(self)
 		-- y offset for ScreenEvaluationStage or ScreenEvaluationNonstop

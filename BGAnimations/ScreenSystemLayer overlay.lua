@@ -42,7 +42,7 @@ local function CreditsText( player )
 			local bShow = true
 
 			local textColor = Color.White
-			local shadowLength = 0
+			local shadowLength = 1
 
 			if screen then
 				bShow = THEME:GetMetric( screen:GetName(), "ShowCreditDisplay" )
@@ -61,16 +61,13 @@ local function CreditsText( player )
 					--        today, but there's always hope
 					--        I'll see tomorrow
 
-					-- dark text for RainbowMode
-					if ThemePrefs.Get("RainbowMode") then
-						textColor = Color.Black
-					end
 				end
 			end
 
 			self:visible( bShow )
 			self:diffuse(textColor)
 			self:shadowlength(shadowLength)
+			self:rainbowscroll(true)
 		end
 	}
 end
@@ -131,7 +128,10 @@ t[#t+1] = Def.ActorFrame {
 
 -- "Event Mode" or CreditText at lower-center of screen
 t[#t+1] = LoadFont("Common Footer")..{
-	InitCommand=function(self) self:xy(_screen.cx, _screen.h-16):zoom(0.5):horizalign(center) end,
+	InitCommand=function(self)
+		self:xy(_screen.cx, _screen.h-16):zoom(0.5):horizalign(center)
+		self:shadowlength(1.5)
+	end,
 
 	OnCommand=function(self) self:playcommand("Refresh") end,
 	ScreenChangedMessageCommand=function(self) self:playcommand("Refresh") end,

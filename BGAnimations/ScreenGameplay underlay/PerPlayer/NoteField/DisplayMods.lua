@@ -2,7 +2,7 @@ local player = ...
 
 if SL.Global.GameMode == "Casual" then return end
 
-local optionslist = GetPlayerOptionsString(player)
+local optionslist = GetPlayerOptionsString(player):lower()
 
 local af = Def.ActorFrame{
   InitCommand = function(self)

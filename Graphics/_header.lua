@@ -27,11 +27,7 @@ return Def.ActorFrame{
 				self:diffuse(GetCurrentColor(true))
 			end
 			if ThemePrefs.Get("VisualStyle") == "Technique" then
-				if topscreen == "ScreenSelectMusic" and not ThemePrefs.Get("RainbowMode") then
-					self:diffuse(0, 0, 0, 0.5)
-				else
-					self:diffusealpha(0)
-				end
+				self:diffusealpha(0)
 			end
 			self:visible(topscreen ~= "ScreenCRTTestPatterns")
 		end,
@@ -50,7 +46,10 @@ return Def.ActorFrame{
 	LoadFont("Common Header")..{
 		Name="HeaderText",
 		Text=ScreenString("HeaderText"),
-		InitCommand=function(self) self:diffusealpha(0):horizalign(left):xy(10, 15):zoom( SL_WideScale(0.5,0.6) ) end,
+		InitCommand=function(self)
+			self:diffusealpha(0):horizalign(left):xy(10, 15):zoom( SL_WideScale(0.5,0.6) )
+			self:shadowlength(2)
+		end,
 		OnCommand=function(self) self:sleep(0.1):decelerate(0.33):diffusealpha(1) end,
 		OffCommand=function(self) self:accelerate(0.33):diffusealpha(0) end,
 		SetHeaderTextMessageCommand=function(self, params)

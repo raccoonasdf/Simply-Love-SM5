@@ -56,7 +56,7 @@ return LoadFont("Wendy/_wendy monospace numbers")..{
 	Text="0.00",
 	Name=pn.."Score",
 	InitCommand=function(self)
-		self:valign(1):horizalign(right)
+		self:valign(1):horizalign(right):shadowlength(2)
 		self:zoom(0.5)
 		if IsEX then
 			-- If EX Score, let's diffuse it to be the same as the ITG top window.

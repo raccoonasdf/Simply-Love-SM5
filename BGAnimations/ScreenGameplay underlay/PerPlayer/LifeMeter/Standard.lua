@@ -22,7 +22,7 @@ local meter = Def.ActorFrame{
 	OnCommand=function(self) self:visible(true) end,
 
 	-- frame
-	Def.Quad{ InitCommand=function(self) self:x(_x):zoomto(w+4, h+4) end },
+	Def.Quad{ InitCommand=function(self) self:x(_x):zoomto(w+4, h+4):shadowlength(2) end },
 	Def.Quad{ InitCommand=function(self) self:x(_x):zoomto(w, h):diffuse(0,0,0,1) end },
 
 	-- the Quad that changes width/color depending on current Life

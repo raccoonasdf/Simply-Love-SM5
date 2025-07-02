@@ -65,6 +65,7 @@ if PREFSMAN:GetPreference("EventMode") then
 			self:zoom( SL_WideScale(0.3, 0.36) )
 			self:y( SL_WideScale(3.15, 3.5) / self:GetZoom() )
 			self:diffusealpha(0):x(_screen.cx)
+			self:shadowlength(2)
 		end,
 		OnCommand=function(self)
 			self:sleep(0.1):decelerate(0.33):diffusealpha(1)
@@ -81,6 +82,7 @@ else
 			self:zoom( SL_WideScale(0.5, 0.6) )
 			self:y( SL_WideScale(7.5, 9) / self:GetZoom() )
 			self:diffusealpha(0):x(_screen.cx)
+			self:shadowlength(2)
 		end,
 		OnCommand=function(self)
 			self:sleep(0.1):decelerate(0.33):diffusealpha(1)
@@ -96,6 +98,7 @@ af[#af+1] = LoadFont("Common Header")..{
 	InitCommand=function(self)
 		self:diffusealpha(0):halign(1):y(15)
 		self:zoom( SL_WideScale(0.5, 0.6) )
+		self:shadowlength(2)
 
 		-- move the GameMode text further left if MenuTimer is enabled
 		if PREFSMAN:GetPreference("MenuTimer") then

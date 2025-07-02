@@ -23,7 +23,6 @@ af[#af+1] = LoadActor("./FailOnHoldStart.lua")
 
 -- UI elements shared by both players
 af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/VersusStepStatistics.lua")
-af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/Header.lua")
 af[#af+1] = LoadActor("../ScreenGameplay underlay/Shared/SongInfoBar.lua") -- song title and progress bar
 
 for player in ivalues( GAMESTATE:GetHumanPlayers() ) do

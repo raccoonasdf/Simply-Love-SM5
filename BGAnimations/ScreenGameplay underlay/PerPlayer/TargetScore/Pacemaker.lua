@@ -68,7 +68,7 @@ if SL[pn].ActiveModifiers.Pacemaker then
 			_y = 84
 		end
 
-		self:horizalign(center):zoom(zoomF)
+		self:horizalign(center):zoom(zoomF):shadowlength(2.5)
 		self:y(_y)
 		self:x( _x[player] )
 

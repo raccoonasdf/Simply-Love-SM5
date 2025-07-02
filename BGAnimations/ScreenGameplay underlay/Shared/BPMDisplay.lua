@@ -50,7 +50,7 @@ local SingleBPMDisplay = function()
 		LoadFont("Common Normal")..{
 			Name="BPMDisplay",
 			InitCommand=function(self)
-				self:zoom(1)
+				self:zoom(1):shadowlength(1)
 				bpmDisplay = self
 			end
 		}

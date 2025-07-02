@@ -11,7 +11,7 @@ return Def.ActorFrame{
 	-- colored background for player's chart's difficulty meter
 	Def.Quad{
 		InitCommand=function(self)
-			self:zoomto(30, 30)
+			self:zoomto(30, 30):shadowlength(2)
 		end,
 		CurrentSongChangedMessageCommand=function(self) self:queuecommand("Begin") end,
 		BeginCommand=function(self)
