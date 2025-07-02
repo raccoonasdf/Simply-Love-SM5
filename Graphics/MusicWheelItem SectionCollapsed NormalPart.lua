@@ -2,6 +2,8 @@ local num_items = THEME:GetMetric("MusicWheel", "NumWheelItems")
 -- subtract 2 from the total number of MusicWheelItems
 -- one MusicWheelItem will be offsceen above, one will be offscreen below
 local num_visible_items = num_items - 2
+local item_h = _screen.h/num_visible_items
+local itg_banner_ar = 418/164
 
 local item_width = _screen.w / 2.125
 
@@ -23,6 +25,15 @@ return Def.ActorFrame{
 			if ThemePrefs.Get("VisualStyle") == "Technique" then
 				self:diffusealpha(0.5)
 			end
+		end
+	},
+	Def.Banner {
+		InitCommand=function(self)
+			self:scaletoclipped(item_h*itg_banner_ar,item_h):faderight(WideScale(0.5, 0)):x(40.5):diffusealpha(WideScale(0.5, 1))
+		end,
+		SetCommand=function(self, params)
+			local path = SONGMAN:GetSongGroupBannerPath(params.Text)
+			self:LoadFromCached("Banner", path)
 		end
 	}
 }

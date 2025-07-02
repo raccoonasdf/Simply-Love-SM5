@@ -25,7 +25,7 @@ af[#af+1] = Def.Sprite{
 
 af[#af+1] = Def.Banner{
 	InitCommand=function(self)
-		self:SetDecodeMovie(false):scaletoclipped(item_h*itg_banner_ar,item_h):x(40.5)--[[:x(_screen.w/(WideScale(2.15, 2.14)) - (item_h*itg_banner_ar))]]:diffusealpha(0.5)
+		self:SetDecodeMovie(false):scaletoclipped(item_h*itg_banner_ar,item_h):faderight(WideScale(0.5, 0)):x(40.5):diffusealpha(0.5)
 	end,
 	SetCommand=function(self, params)
 		if self and params.Song and params.Song:GetBannerPath() then
