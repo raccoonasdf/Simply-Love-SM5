@@ -79,6 +79,9 @@ if SL[pn].ActiveModifiers.Pacemaker then
 				self:x( _x[player] + (82 * (player==PLAYER_1 and 1 or -1)) )
 			end
 		end
+		
+		-- show pacemaker immediately, instead of after first judgment
+		self:queuecommand("Update")
 	end
 
 --------------------------------------------------------------
