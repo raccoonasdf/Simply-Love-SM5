@@ -5,7 +5,7 @@ local pacemaker = Def.BitmapText{
 	Font="Wendy/_wendy monosmall numbers",
 	JudgmentMessageCommand=function(self, params)
 		self:queuecommand("Update")
-		if params.Notes then
+		if params.Player == player and params.Notes then
 			self:zoomy(0.5):decelerate(0.1):zoomy(0.4)
 		end		
 	end,
