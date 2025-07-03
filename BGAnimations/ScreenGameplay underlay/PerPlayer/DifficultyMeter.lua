@@ -7,6 +7,11 @@ return Def.ActorFrame{
 		self:xy(_x, 56)
 	end,
 
+	JudgmentMessageCommand=function(self, params)
+		if params.Player == player and params.Notes then
+			self:zoomy(1.1):decelerate(0.1):zoomy(1)
+		end
+	end,
 
 	-- colored background for player's chart's difficulty meter
 	Def.Quad{
