@@ -26,8 +26,8 @@ return Def.ActorFrame{
 		InitCommand=function(self) 
 			self:horizalign(left):diffuse(color("#4c565d")):zoomto(item_width, _screen.h/num_visible_items - 1)
 			if ThemePrefs.Get("RainbowMode") then
-	            self:diffuse(color("#FFFFFF"))
-				self:diffusealpha(0.1):blend("BlendMode_Subtract")
+	            self:diffuse(color("#EEEEEE"))
+				self:diffusealpha(0.4):blend("BlendMode_Add")
 			else
 				if ThemePrefs.Get("VisualStyle") == "Technique" then
 					self:diffusealpha(0.5)
