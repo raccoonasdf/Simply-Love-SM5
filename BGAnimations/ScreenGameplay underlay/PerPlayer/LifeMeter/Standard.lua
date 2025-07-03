@@ -3,6 +3,9 @@ local player = ...
 local w = 136
 local h = 18
 local _x = _screen.cx + (player==PLAYER_1 and -1 or 1) * SL_WideScale(238, 288)
+if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides" then
+	_x = _x + SL_WideScale(36, 86)
+end
 
 -- get SongPosition specific to this player so that
 -- split BPMs are handled if there are any

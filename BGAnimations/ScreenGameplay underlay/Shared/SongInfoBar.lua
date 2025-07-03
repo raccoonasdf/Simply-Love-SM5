@@ -1,4 +1,10 @@
 local w = SL_WideScale(310, 417)
+if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides"
+		and SL[ToEnumShortString(PLAYER_1)].ActiveModifiers.LifeMeterType == "Standard"
+then
+	w = w - SL_WideScale(72, 172)
+end
+
 local h = 22
 
 -- Song Completion Meter
@@ -18,7 +24,7 @@ return Def.ActorFrame{
 	-- Song Title
 	LoadFont("Common Normal")..{
 		Name="SongTitle",
-		InitCommand=function(self) self:zoom(0.8):shadowlength(0.6):maxwidth(_screen.w/2.5 - 10) end,
+		InitCommand=function(self) self:zoom(0.8):shadowlength(0.6):maxwidth(w) end,
 		CurrentSongChangedMessageCommand=function(self)
 			local song = GAMESTATE:GetCurrentSong()
 			self:settext( song and song:GetDisplayFullTitle() or "" )

@@ -1,6 +1,9 @@
 local player = ...
 
 local _x = _screen.cx + (player==PLAYER_1 and -1 or 1) * SL_WideScale(292.5, 342.5)
+if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides" then
+	_x = _x + SL_WideScale(36, 86)
+end
 
 return Def.ActorFrame{
 	InitCommand=function(self)

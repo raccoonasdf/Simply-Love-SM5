@@ -61,6 +61,9 @@ if SL[pn].ActiveModifiers.Pacemaker then
 			[PLAYER_1] = GetNotefieldX(PLAYER_1) + 64,
 			[PLAYER_2] = GetNotefieldX(PLAYER_2) - 64
 		}
+		if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides" then
+			_x[PLAYER_1] = _x[PLAYER_1] - 142
+		end
 
 		if isTwoPlayers and SL[pn].ActiveModifiers.NPSGraphAtTop then
 			_x[PLAYER_1] = GetNotefieldX(PLAYER_1) - 128
