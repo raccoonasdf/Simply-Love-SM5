@@ -27,3 +27,5 @@ your own theme!
 - makes judgment, score, combo, and pacemaker bouncier :)
 - adds little banner previews on the music wheel for songs and packs
 - adds an artist filter to the search menu
+- makes rainbow mode a little sillier
+- removes header and footer boxes. i think it looks more spacious that way
