@@ -39,3 +39,5 @@ to your `NoteSkins` directory for the intended experience! you can find it in th
 - adds an artist filter to the search menu
 - makes rainbow mode a little sillier
 - removes header and footer boxes. i think it looks more spacious that way
+- adds my little combo and judgment fonts. uses said combo font in a lot of
+  places that vanilla SL uses Wendy
