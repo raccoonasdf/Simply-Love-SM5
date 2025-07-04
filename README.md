@@ -5,6 +5,16 @@ opinionated and not at all configurable, sorry. but hopefully if you're a little
 bit technically minded you can find some inspiration to mod some things into
 your own theme!
 
+## installation
+
+put this folder into your ITGmania profile's `Themes` directory and switch to it
+ingame at `Options > System Options > Theme`.
+
+also please consider adding my personal customization of HURG's
+[DanceGroove](https://github.com/HURG-IIDX/Noteskin-Workshop-DanceGroove)
+to your `NoteSkins` directory for the intended experience! you can find it in the
+`extras` directory of this theme.
+
 ## added features
 - push Back twice to exit. this is to mitigate a silly little bug that triggers
   the "Do you want to exit" dialog whenever you dismiss any other dialog on the
