@@ -472,7 +472,7 @@ end
 -- remove ".png"
 StripSpriteHints = function(filename)
 	-- handle common cases here, gory details in /src/RageBitmapTexture.cpp
-	return filename:gsub(" %d+x%d+", ""):gsub(" %(doubleres%)", ""):gsub(".png", "")
+	return filename:gsub(" %(res %d+x%d+%)", ""):gsub(" %d+x%d+", ""):gsub(" %(doubleres%)", ""):gsub(".png", "")
 end
 
 GetJudgmentGraphics = function()
@@ -489,8 +489,8 @@ GetJudgmentGraphics = function()
 			-- remove the file extension from the string, leaving only the name of the graphic
 			local name = StripSpriteHints(filename)
 
-			-- Fill the table, special-casing Love so that it comes first.
-			if name == "Love" then
+			-- Fill the table, special-casing DDRW-ish so that it comes first.
+			if name == "DDRW-ish" then
 				table.insert(judgment_graphics, 1, filename)
 			else
 				judgment_graphics[#judgment_graphics+1] = filename
@@ -550,8 +550,8 @@ GetComboFonts = function()
 		end
 
 		if has_png and has_ini then
-			-- special-case Wendy to always appear first in the list
-			if directory_name == "Wendy" then
+			-- special-case Slab to always appear first in the list
+			if directory_name == "Slab" then
 				table.insert(fonts, 1, directory_name)
 
 			-- special-case Wendy (Cursed) to always appear last in the last

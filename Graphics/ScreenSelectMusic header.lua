@@ -58,12 +58,12 @@ af[#af+1] = LoadActor( THEME:GetPathG("", "_header.lua") )
 -- session timer in EventMode
 if PREFSMAN:GetPreference("EventMode") then
 
-	af[#af+1] = LoadFont("Wendy/_wendy monospace numbers")..{
+	af[#af+1] = LoadFont("Slab/_slab")..{
 		Name="Session Timer",
 		InitCommand=function(self)
 			bmt_actor = self
-			self:zoom( SL_WideScale(0.3, 0.36) )
-			self:y( SL_WideScale(3.15, 3.5) / self:GetZoom() )
+			self:zoom( SL_WideScale(0.3, 0.5) )
+			self:y( SL_WideScale(3.15, 7.5) / self:GetZoom() )
 			self:diffusealpha(0):x(_screen.cx)
 			self:shadowlength(2)
 		end,
@@ -92,7 +92,7 @@ else
 end
 
 -- "ITG" aligned to right of screen
-af[#af+1] = LoadFont("Common Header")..{
+af[#af+1] = LoadFont("Slab/_slab")..{
 	Name="GameModeText",
 	Text=THEME:GetString("ScreenSelectPlayMode", SL.Global.GameMode),
 	InitCommand=function(self)

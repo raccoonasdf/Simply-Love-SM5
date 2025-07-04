@@ -48,7 +48,7 @@ t[#t+1] = Def.Quad{
 	InitCommand=function(self)
 		self:diffuse(color("#1e282f")):zoomto(32,152)
 		if ThemePrefs.Get("RainbowMode") then
-			self:diffusealpha(0.9)
+			self:diffuse(Color.White):diffusealpha(0.5)
 		end
 		if ThemePrefs.Get("VisualStyle") == "Technique" then
 			self:diffusealpha(0.5)
@@ -62,24 +62,36 @@ local Grid = Def.ActorFrame{
 }
 
 for RowNumber=-2, 2 do
-	Grid[#Grid+1] = Def.Quad{
+	--[[Grid[#Grid+1] = Def.Quad{
 		Name="MeterBackground_"..(RowNumber + 3),
 		InitCommand=function(self)
 			local height = 28
 			local spacing = 2
 			self:diffuse(color("#0f0f0f")):zoomto(height, height):y((height+spacing)*RowNumber)
 			if ThemePrefs.Get("RainbowMode") then
-				self:diffusealpha(0.9)
+				self:diffuse(Color.White):blend("BlendMode_InvertDest")
 			end
 		end
 	}
-
-	Grid[#Grid+1] = LoadFont("Common Bold")..{
+	Grid[#Grid+1] = Def.Quad{
+		Name="MeterBackground2_"..(RowNumber + 3),
+		InitCommand=function(self)
+			local height = 28
+			local spacing = 2
+			self:diffuse(color("#0f0f0f")):zoomto(height, height):y((height+spacing)*RowNumber)
+			self:diffuse(Color.White):diffusealpha(0.3):blend("BlendMode_Add")
+			if not ThemePrefs.Get("RainbowMode") then
+				self:visible(false)
+			end
+		end
+	}]]
+	Grid[#Grid+1] = LoadFont("Slab/_slab")..{
 		Name="Meter_"..(RowNumber + 3),
 		InitCommand=function(self)
 			local height = 28
 			local spacing = 2
-			self:y((height+spacing)*RowNumber):zoom(0.45)
+			self:xy(-3, (height+spacing)*RowNumber):zoom(0.45)
+			self:shadowlength(2)
 		end,
 		SetCommand=function(self, params)
 			-- diffuse and set each chart's difficulty meter

@@ -132,8 +132,8 @@ local no = Def.ActorFrame{
 		self:y(250):diffuse( PlayerColor(PLAYER_2) )
 	end,
 
-	LoadFont("Common Bold")..{
-		Text=THEME:GetString("ScreenPromptToResetPreferencesToStock","No"),
+	LoadFont("Slab/_slab")..{
+		Text=THEME:GetString("ScreenPromptToResetPreferencesToStock","No").."!!",
 		InitCommand=function(self) self:zoom(1.1) end
 	},
 	LoadFont("Common Normal")..{
@@ -149,8 +149,8 @@ local yes = Def.ActorFrame{
 		self:y(250)
 	end,
 
-	LoadFont("Common Bold")..{
-		Text=THEME:GetString("ScreenPromptToResetPreferencesToStock","Yes"),
+	LoadFont("Slab/_slab")..{
+		Text=THEME:GetString("ScreenPromptToResetPreferencesToStock","Yes").."!!",
 		InitCommand=function(self) self:zoom(1.1) end
 	},
 	LoadFont("Common Normal")..{

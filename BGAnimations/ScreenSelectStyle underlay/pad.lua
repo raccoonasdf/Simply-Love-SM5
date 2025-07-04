@@ -1,7 +1,7 @@
 local color_used, color_unused, padNum, style = unpack(...)
 
 color_used   = color_used   or {1, 1, 1, 1.0}
-color_unused = color_unused or (DarkUI() and {0.25,0.25,0.25,1} or {1, 1, 1, 0.3})
+color_unused = color_unused or (DarkUI() and {0,0,0,1} or {1, 1, 1, 0.3})
 padNum = padNum or 1
 style  = style  or (GAMESTATE:GetCurrentStyle() and GAMESTATE:GetCurrentStyle():GetName())
 
@@ -13,6 +13,7 @@ local init_panel = function(self, col, row, z)
 	self:zoom(z)
 	self:x(z * self:GetWidth()  * (col-1))
 	self:y(z * self:GetHeight() * (row-2))
+	self:shadowlength(2)
 	return self
 end
 

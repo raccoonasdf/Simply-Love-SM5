@@ -19,6 +19,7 @@ return Def.Sprite{
 	InitCommand=function(self)
 		self:visible( GAMESTATE:IsHumanPlayer(player) )
 		self:halign( p ):zoom(0.575)
+		self:shadowlength(2)
 
 		-- FIXME: SM5.1-beta's EffectClock enum includes constants for
 		--   CLOCK_BGM_BEAT_PLAYER1 and CLOCK_BGM_BEAT_PLAYER2 but
@@ -41,11 +42,11 @@ return Def.Sprite{
 		self:bounce():effectclock("beatnooffset")
 
 		if player == PLAYER_1 then
-			self:x( IsUsingWideScreen() and _screen.cx-53 or 267)
+			self:x( IsUsingWideScreen() and _screen.cx-54 or 266)
 			self:effectmagnitude(-3,0,0)
 		elseif player == PLAYER_2 then
 			self:rotationz(180)
-			self:x(IsUsingWideScreen() and _screen.cx-17 or 303)
+			self:x(IsUsingWideScreen() and _screen.cx-20 or 304)
 			self:effectmagnitude(3,0,0)
 		end
 

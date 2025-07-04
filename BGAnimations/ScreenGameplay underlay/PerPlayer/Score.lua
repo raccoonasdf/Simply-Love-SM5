@@ -30,8 +30,8 @@ if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides" t
 	P1_x = P1_x + SL_WideScale(22, 72)
 end
 local pos = {
-	[PLAYER_1] = { x=P1_x,  y=56 },
-	[PLAYER_2] = { x=(_screen.cx + clamp(_screen.w, 640, 854)/2.75), y=56 },
+	[PLAYER_1] = { x=P1_x,  y=66 },
+	[PLAYER_2] = { x=(_screen.cx + clamp(_screen.w, 640, 854)/2.75), y=66 },
 }
 
 local pss = STATSMAN:GetCurStageStats():GetPlayerStageStats(player)
@@ -56,7 +56,7 @@ local zoom_factor = clamp(scale(GetScreenAspectRatio(), 16/10, 16/9, ar_scale.si
 
 -- -----------------------------------------------------------------------
 
-return LoadFont("Wendy/_wendy monospace numbers")..{
+return LoadFont("Slab/_slab")..{
 	Text="0.00",
 	Name=pn.."Score",
 	InitCommand=function(self)

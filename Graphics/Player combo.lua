@@ -45,6 +45,9 @@ local combo_bmt = LoadFont("_Combo Fonts/" .. combo_font .."/" .. combo_font)..{
 	Name="Number",
 	OnCommand=function(self)
 		self:shadowlength(1):vertalign(middle):zoom(0.75)
+		if combo_font == "Slab" then
+			self:x(-5):zoom(0.5)
+		end
 	end,
 	ComboCommand=function(self, params)
 		self:settext( params.Combo or params.Misses or "" )

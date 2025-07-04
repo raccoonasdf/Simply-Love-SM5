@@ -19,7 +19,12 @@ return Def.ActorFrame{
 	-- colored background for player's chart's difficulty meter
 	Def.Quad{
 		InitCommand=function(self)
-			self:zoomto(30, 30):shadowlength(2)
+			self:zoomto(30, 30):shadowlength(2):diffuse(Color.White)
+		end
+	},
+	Def.Quad{
+		InitCommand=function(self)
+			self:zoomto(26, 26):diffuse(Color.Black)
 		end,
 		CurrentSongChangedMessageCommand=function(self) self:queuecommand("Begin") end,
 		BeginCommand=function(self)
@@ -30,12 +35,12 @@ return Def.ActorFrame{
 			end
 		end
 	},
-
 	-- player's chart's difficulty meter
-	LoadFont("Common Bold")..{
+	LoadFont("Slab/_slab")..{
 		InitCommand=function(self)
-			self:diffuse( Color.Black )
-			self:zoom( 0.4 )
+			--self:diffuse( Color.Black )
+			self:xy(-3, -1):shadowlength(2):shadowcolor(Color.Black)
+			self:zoom( 0.45 )
 		end,
 		CurrentSongChangedMessageCommand=function(self) self:queuecommand("Begin") end,
 		BeginCommand=function(self)

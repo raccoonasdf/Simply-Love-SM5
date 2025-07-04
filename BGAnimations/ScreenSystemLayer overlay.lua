@@ -127,7 +127,7 @@ t[#t+1] = Def.ActorFrame {
 }
 
 -- "Event Mode" or CreditText at lower-center of screen
-t[#t+1] = LoadFont("Common Footer")..{
+t[#t+1] = LoadFont("Slab/_slab")..{
 	InitCommand=function(self)
 		self:xy(_screen.cx, _screen.h-16):zoom(0.5):horizalign(center)
 		self:shadowlength(1.5)

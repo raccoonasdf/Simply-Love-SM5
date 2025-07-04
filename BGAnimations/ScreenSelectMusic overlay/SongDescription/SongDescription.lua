@@ -21,11 +21,13 @@ local af = Def.ActorFrame{
 af[#af+1] = Def.Quad{
 	InitCommand=function(self)
 		self:setsize( _w, 50 )
-		self:diffuse(color("#1e282f"))
-
-		if ThemePrefs.Get("RainbowMode") then self:diffusealpha(0.9) end
-		if ThemePrefs.Get("VisualStyle") == "Technique" then
-			self:diffusealpha(0.5)
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffuse({1,1,1,0.5})
+		else
+			self:diffuse(color("#1e282f"))
+			if ThemePrefs.Get("VisualStyle") == "Technique" then
+				self:diffusealpha(0.5)
+			end
 		end
 	end
 }
@@ -38,12 +40,22 @@ af[#af+1] = Def.ActorFrame{
 	-- Artist Label
 	LoadFont("Common Normal")..{
 		Text=THEME:GetString("SongDescription", GAMESTATE:IsCourseMode() and "NumSongs" or "Artist"):upper(),
-		InitCommand=function(self) self:align(1,0):y(-11):maxwidth(44):diffuse(0.8,0.8,0.8,1) end,
+		InitCommand=function(self)
+			self:align(1,0):y(-11):maxwidth(44):diffuse(0.8,0.8,0.8,1)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(Color.White):shadowlength(1)
+			end
+		end,
 	},
 
 	-- Song Artist (or number of Songs in this Course, if CourseMode)
 	LoadFont("Common Normal")..{
-		InitCommand=function(self) self:align(0,0):xy(5,-11) end,
+		InitCommand=function(self)
+			self:align(0,0):xy(5,-11)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(color("#0a141b"))
+			end
+		end,
 		SetCommand=function(self)
 			local maxwidth = _w - 60
 
@@ -70,6 +82,9 @@ af[#af+1] = Def.ActorFrame{
 		Text=THEME:GetString("SongDescription", "BPM"):upper(),
 		InitCommand=function(self)
 			self:align(1,0):y(10):diffuse(0.8,0.8,0.8,1)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(Color.White):shadowlength(1)
+			end			
 		end
 	},
 
@@ -79,6 +94,9 @@ af[#af+1] = Def.ActorFrame{
 			-- vertical align has to be middle for BPM value in case of split BPMs having a line break
 			self:align(0, 0.5)
 			self:xy(5,17):diffuse(1,1,1,1):vertspacing(-8)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(color("#0a141b"))
+			end			
 		end,
 		SetCommand=function(self)
 
@@ -141,12 +159,20 @@ af[#af+1] = Def.ActorFrame{
 		InitCommand=function(self)
 			self:align(1,0):diffuse(0.8,0.8,0.8,1)
 			self:x(_w-130):y(10)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(Color.White):shadowlength(1)
+			end						
 		end
 	},
 
 	-- Song Duration Value
 	LoadFont("Common Normal")..{
-		InitCommand=function(self) self:align(0,0):xy(_w-130 + 5, 10) end,
+		InitCommand=function(self)
+			self:align(0,0):xy(_w-130 + 5, 10)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(color("#0a141b"))
+			end					
+		end,
 		SetCommand=function(self)
 			if MusicWheel == nil then MusicWheel = SCREENMAN:GetTopScreen():GetMusicWheel() end
 

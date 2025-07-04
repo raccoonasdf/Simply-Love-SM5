@@ -2,7 +2,7 @@ local player, pss, isTwoPlayers, graph, target_score = unpack(...)
 local pn = ToEnumShortString(player)
 
 local pacemaker = Def.BitmapText{
-	Font="Wendy/_wendy monosmall numbers",
+	Font="Slab/_slab",
 	JudgmentMessageCommand=function(self, params)
 		self:queuecommand("Update")
 		if params.Player == player and params.Notes then
