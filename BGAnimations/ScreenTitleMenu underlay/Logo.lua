@@ -34,16 +34,8 @@ af[#af+1] = Def.Sprite{
 			self:zoom(0.225):vertalign(top)
 			self:y(-115):shadowlength(0)
 		else
-			local style = ThemePrefs.Get("VisualStyle")
-			local image = THEME:GetPathG("", "_VisualStyles/"..style.."/TitleMenu (doubleres).png")
-			local imageAlt = "/Themes/"..THEME:GetCurThemeName().."/Graphics/_VisualStyles/"..style.."/TitleMenuAlt (doubleres).png"
-			if FILEMAN:DoesFileExist(imageAlt) and math.random(1,100) <= 10 then
-				self:Load(imageAlt)
-			else
-				self:Load(image)
-			end
-			self:zoom(0.7):vertalign(top)
-			self:y(-102):shadowlength(0.75)
+			self:Load(THEME:GetPathG("", "itgmania.png"))
+			self:zoom(0.5):y(-48)
 		end
 	end,
 }
@@ -53,7 +45,7 @@ if ThemePrefs.Get("VisualStyle") ~= "SRPG9" then
 	-- decorative arrows for current game (dance, pump, techno, etc.)
 	af[#af+1] = LoadActor(resolved_path)..{
 		InitCommand=function(self)
-			self:y(-16)
+			self:y(20)
 
 			-- use ActorUtil to resolve the path and find out if it's a png or a directory
 			-- if it's a png, scale it

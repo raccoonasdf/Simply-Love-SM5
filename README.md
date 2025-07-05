@@ -41,3 +41,5 @@ to your `NoteSkins` directory for the intended experience! you can find it in th
 - removes header and footer boxes. i think it looks more spacious that way
 - adds my little combo and judgment fonts. uses said combo font in a lot of
   places that vanilla SL uses Wendy
+- "ITGmania" displayed prominently on the title screen so people know what game
+  you're playing!
