@@ -39,8 +39,8 @@ return Def.ActorFrame{
 	LoadFont("Slab/_slab")..{
 		InitCommand=function(self)
 			--self:diffuse( Color.Black )
-			self:xy(-3, -1):shadowlength(2):shadowcolor(Color.Black)
-			self:zoom( 0.45 )
+			self:xy(-3.5, -1):shadowlength(2):shadowcolor(Color.Black)
+			self:zoom( 0.45 ):zoomx(0.5):maxwidth(80)
 		end,
 		CurrentSongChangedMessageCommand=function(self) self:queuecommand("Begin") end,
 		BeginCommand=function(self)
@@ -48,7 +48,7 @@ return Def.ActorFrame{
 			local meter = steps:GetMeter()
 
 			if meter then
-				self:settext(meter)
+				self:diffuse(lerp_color(0.66, DifficultyColor(steps:GetDifficulty()), Color.White)):settext(meter)
 			end
 		end
 	}

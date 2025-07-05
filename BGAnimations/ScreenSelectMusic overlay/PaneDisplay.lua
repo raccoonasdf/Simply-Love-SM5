@@ -571,11 +571,12 @@ for player in ivalues(PlayerNumber) do
 	}
 
 	-- Chart Difficulty Meter
-	af2[#af2+1] = LoadFont("Wendy/_wendy small")..{
+	af2[#af2+1] = LoadFont("Slab/_slab")..{
 		Name="DifficultyMeter",
 		InitCommand=function(self)
-			self:horizalign(right):diffuse(Color.Black)
-			self:xy(pos.col[4], pos.row[2])
+			self:horizalign(right):zoom(0.9):maxwidth(90)
+			self:shadowlength(2):shadowcolor(Color.Black)
+			self:xy(pos.col[4], pos.row[2]-2)
 			if not IsUsingWideScreen() then self:maxwidth(66) end
 			self:queuecommand("Set")
 		end,
@@ -588,8 +589,10 @@ for player in ivalues(PlayerNumber) do
 			local SongOrCourse, StepsOrTrail = GetSongAndSteps(player)
 			if not SongOrCourse then self:settext("") return end
 			local meter = StepsOrTrail and StepsOrTrail:GetMeter() or "?"
-
 			self:settext( meter )
+			if StepsOrTrail then
+				self:diffuse( lerp_color(0.66, DifficultyColor(StepsOrTrail:GetDifficulty()), Color.White) )
+			end
 		end
 	}
 
