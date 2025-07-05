@@ -23,8 +23,7 @@ return Def.Quad{
 		end
 		if ThemePrefs.Get("VisualStyle") == "SRPG9" then
 			self:diffuse(GetCurrentColor(true))
-		end
-		if ThemePrefs.Get("VisualStyle") == "Technique" then
+		else
 			self:diffusealpha(0)
 		end
 	end,
