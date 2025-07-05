@@ -57,12 +57,14 @@ local af = Def.ActorFrame{
 -- Background quad for the density graph
 af[#af+1] = Def.Quad{
 	InitCommand=function(self)
-		self:diffuse(color("#1e282f")):zoomto(width, height)
+		self:zoomto(width, height)
 		if ThemePrefs.Get("RainbowMode") then
-			self:diffusealpha(0.9)
-		end
-		if ThemePrefs.Get("VisualStyle") == "Technique" then
-			self:diffusealpha(0.5)
+			self:diffuse({1,1,1,0.5})
+		else
+			self:diffuse(color("#1e282f"))
+			if ThemePrefs.Get("VisualStyle") == "Technique" then
+				self:diffusealpha(0.5)
+			end
 		end
 	end
 }
@@ -172,6 +174,9 @@ af2[#af2+1] = Def.ActorFrame{
 		InitCommand=function(self)
 			local bgHeight = 17
 			self:diffuse(color("#000000")):zoomto(width, bgHeight):diffusealpha(0.5)
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse(color("#0a141b")):diffusealpha(0.33)
+			end
 		end
 	},
 
@@ -231,9 +236,14 @@ af2[#af2+1] = Def.ActorFrame{
 	-- Only shown in 1 Player mode
 	Def.Quad{
 		InitCommand=function(self)
-			self:diffuse(color("#1e282f")):zoomto(width, height)
-			if ThemePrefs.Get("VisualStyle") == "Technique" then
-				self:diffusealpha(0.5)
+			self:zoomto(width, height)			
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse({1,1,1,0.5})
+			else
+				self:diffuse(color("#1e282f"))
+				if ThemePrefs.Get("VisualStyle") == "Technique" then
+					self:diffusealpha(0.5)
+				end
 			end
 		end,
 	}
@@ -267,13 +277,12 @@ for i, row in ipairs(layout) do
 				self:xy(-width/2 + 40, -height/2 + 13)
 				self:addx((j-1)*colSpacing)
 				self:addy((i-1)*rowSpacing)
+				if ThemePrefs.Get("RainbowMode") then
+					self:diffuse(color("#0a141b"))
+				end				
 			end,
 			HideCommand=function(self)
-				if col ~= "Total Stream" then
-					self:settext("0")
-				else
-					self:settext(noneText.." (0.0%)")
-				end
+				self:settext("")
 			end,
 			RedrawCommand=function(self)
 				if col ~= "Total Stream" then
@@ -291,16 +300,25 @@ for i, row in ipairs(layout) do
 		}
 
 		af3[#af3+1] = LoadFont("Common Normal")..{
-			Text=THEME:GetString("TechCategory", col),
+			Text=THEME:GetString("TechCategory", col):upper(),
 			Name=col,
 			InitCommand=function(self)
 				local textHeight = 17
-				local textZoom = 0.8
+				local textZoom = 0.9
 				self:maxwidth(width/textZoom):zoom(textZoom):horizalign(left)
-				self:xy(-width/2 + 50, -height/2 + 13)
+				self:xy(-width/2 + 45, -height/2 + 13)
 				self:addx((j-1)*colSpacing)
 				self:addy((i-1)*rowSpacing)
+				if ThemePrefs.Get("RainbowMode") then
+					self:diffuse(Color.White):shadowlength(1)
+				end
 			end,
+			HideCommand=function(self)
+				self:visible(false)
+			end,
+			RedrawCommand=function(self)
+				self:visible(true)
+			end
 		}
 
 	end
