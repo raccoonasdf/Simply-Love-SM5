@@ -15,6 +15,22 @@ also please consider adding my personal customization of HURG's
 to your `NoteSkins` directory for the intended experience! you can find it in the
 `extras` directory of this theme.
 
+## note about animated banners
+since i've put banners on the music wheel, performance problems with animated
+banners will be much more noticeable in this theme. in particular, extremely
+short (sub-2s) banners seem to incur a meaningful performance hit because of how
+frequently they loop.
+
+for example, opening 7gays1pack pegs two cores at 100% on my machine because of
+its quarter-second long banner for xXXi_wud_nvrstøp_ÜXXx (Remix). i fixed this
+by using ffmpeg to make a version of the video that includes 20 loops so it can
+run for 5 seconds:
+```
+mv iwudneverstopu-bn.mp4 iwudneverstopu-bn.old.mp4
+ffmpeg -i iwudneverstopu-bn.old.mp4 \
+  -vf "loop=20:99999" iwudneverstopu-bn.mp4
+```
+
 ## added features
 - push Back twice to exit. this is to mitigate a silly little bug that triggers
   the "Do you want to exit" dialog whenever you dismiss any other dialog on the
