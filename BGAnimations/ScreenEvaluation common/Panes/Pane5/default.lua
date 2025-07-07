@@ -127,6 +127,9 @@ pane[#pane+1] = Def.BitmapText{
 		if ThemePrefs.Get("VisualStyle") == "Technique" then
 			self:diffusealpha(0.5)
 		end
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1):diffusealpha(1)
+		end
 	end,
 }
 
@@ -138,6 +141,9 @@ pane[#pane+1] = Def.BitmapText{
 		self:addx(pane_width-10):addy(-125)
 			:zoom(0.3)
 			:horizalign(right)
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end			
 	end,
 }
 
