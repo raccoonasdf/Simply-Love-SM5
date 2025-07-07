@@ -36,7 +36,9 @@ end
 af[#af+1] = Def.Quad{
 	InitCommand=function(self) 
 		self:diffuse(color("#1E282F")):setsize(banner.width,25):zoom(banner.zoom)
-		if ThemePrefs.Get("VisualStyle") == "Technique" then
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffuse({1,1,1,0.5})
+		elseif ThemePrefs.Get("VisualStyle") == "Technique" then
 			self:diffusealpha(0.5)
 		end
 	end,
@@ -46,7 +48,10 @@ af[#af+1] = Def.Quad{
 af[#af+1] = LoadFont("Common Normal")..{
 	InitCommand=function(self)
 		local songtitle = (GAMESTATE:IsCourseMode() and GAMESTATE:GetCurrentCourse():GetDisplayFullTitle()) or GAMESTATE:GetCurrentSong():GetDisplayFullTitle()
-		if songtitle then self:settext(songtitle):maxwidth(banner.width*banner.zoom) end
+		if songtitle then self:settext(songtitle):maxwidth(banner.width*banner.zoom-20) end
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffuse(color("#0a141b"))
+		end
 	end
 }
 

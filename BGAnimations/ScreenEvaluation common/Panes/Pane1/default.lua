@@ -3,6 +3,11 @@
 -- and judgment counts on holds, mines, hands, rolls
 --
 -- Pane1 is the what the original Simply Love for SM3.95 shipped with.
+local player = unpack(...)
+local pn = ToEnumShortString(player)
+if SL.Global.GameMode == "ITG" and SL[pn].ActiveModifiers.ShowFaPlusPane then
+	return
+end
 
 return Def.ActorFrame{
 

@@ -90,7 +90,13 @@ pane[#pane+1] = LoadActor("../Pane3/Percentage.lua", player)..{
 
 pane[#pane+1] = LoadFont("Common Normal")..{
 	Text="GrooveStats QR",
-	InitCommand=function(self) self:align(0,0) end
+	InitCommand=function(self)
+		self:align(0,0)
+		
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end	
+	end
 }
 
 pane[#pane+1] = Def.Quad{
@@ -121,6 +127,10 @@ pane[#pane+1] = LoadFont("Common Normal")..{
 
 		-- FIXME: Oof.
 		if THEME:GetCurLanguage() == "ja" then self:_wrapwidthpixels( scale(96, 0,0.8, 0,z)/z ) end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end
 	end,
 }
 

@@ -78,6 +78,10 @@ for i=1, #TapNoteScores.Types do
 				self:y((i-1)*28 -16)
 				-- diffuse the JudgmentLabels the appropriate colors for the current GameMode
 				self:diffuse( SL.JudgmentColors[SL.Global.GameMode][i] )
+
+				if ThemePrefs.Get("RainbowMode") then
+					self:shadowlength(1):shadowcolor(lerp_color(0.5, SL.JudgmentColors[SL.Global.GameMode][i], Color.Black))
+				end				
 			end
 		}
 	end
@@ -94,6 +98,9 @@ for index, label in ipairs(RadarCategories) do
         BeginCommand=function(self)
             self:x( (controller == PLAYER_1 and -160) or 90 )
             self:y((index-1)*28 + 41)
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(1)
+			end
         end
     }
 end

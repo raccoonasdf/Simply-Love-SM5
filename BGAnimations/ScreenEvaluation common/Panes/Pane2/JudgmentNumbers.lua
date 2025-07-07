@@ -93,13 +93,14 @@ for index, RCType in ipairs(RadarCategories.Types) do
 	end
 
 	if index == 1 then
-		t[#t+1] = LoadFont("Wendy/_wendy white")..{
+		t[#t+1] = LoadFont("Slab/_slab")..{
 			Name="Percent",
 			Text=("%.2f"):format(percent),
 			InitCommand=function(self)
-				self:horizalign(right):zoom(0.4)
-				self:x( ((controller == PLAYER_1) and -114) or 286 )
-				self:y(47)
+				self:horizalign(right):zoom(0.585):zoomtowidth(100)
+				self:x( ((controller == PLAYER_1) and -130) or 277 )
+				self:y(39)
+				self:shadowlength(2)
 				
 				if SL[pn].ActiveModifiers.ShowExScore then
 					self:diffuse(Color.White)
@@ -127,7 +128,7 @@ for index, RCType in ipairs(RadarCategories.Types) do
 		InitCommand=function(self) self:zoom(0.5):horizalign(right):Load("RollingNumbersEvaluationB") end,
 		BeginCommand=function(self)
 			self:x( RadarCategories.x[ToEnumShortString(controller)] )
-			self:y((index)*35 + 53)
+			self:y((index)*35 + 58)
 			self:targetnumber(performance)
 		end
 	}
@@ -137,7 +138,7 @@ for index, RCType in ipairs(RadarCategories.Types) do
 		InitCommand=function(self) self:zoom(0.5):horizalign(right) end,
 		BeginCommand=function(self)
 			self:x( ((controller == PLAYER_1) and -114) or 286 )
-			self:y(index*35 + 53)
+			self:y(index*35 + 58)
 			self:settext(("/%03d"):format(possible))
 			local leadingZeroAttr = { Length=4-tonumber(tostring(possible):len()), Diffuse=color("#5A6166") }
 			self:AddAttribute(0, leadingZeroAttr )

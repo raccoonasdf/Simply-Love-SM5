@@ -12,7 +12,7 @@ return Def.ActorFrame{
 
 	JudgmentMessageCommand=function(self, params)
 		if params.Player == player and params.Notes then
-			self:zoomy(1.1):decelerate(0.1):zoomy(1)
+			self:zoomy(1.15):decelerate(0.1):zoomy(1)
 		end
 	end,
 

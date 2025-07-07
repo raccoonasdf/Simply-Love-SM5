@@ -163,7 +163,7 @@ af[#af+1] = Def.ActorMultiVertex{
 -- ---------------------------------------------
 -- BitmapText actors for text
 local bmts = Def.ActorFrame{}
-bmts.InitCommand=function(self) self:y(-pane_height+32) end
+bmts.InitCommand=function(self) self:y(-pane_height+30) end
 local pad = 40
 
 -- avg_timing_error value with "ms" label
@@ -172,6 +172,9 @@ bmts[#bmts+1] = Def.BitmapText{
 	Text=("%.1fms"):format(avg_timing_error),
 	InitCommand=function(self)
 		self:x(pad):zoom(0.8)
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end
 	end,
 }
 
@@ -181,6 +184,9 @@ bmts[#bmts+1] = Def.BitmapText{
 	Text=("%.1fms"):format(avg_offset),
 	InitCommand=function(self)
 		self:x(pad + (pane_width-2*pad)/3):zoom(0.8)
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end
 	end,
 }
 
@@ -190,6 +196,9 @@ bmts[#bmts+1] = Def.BitmapText{
 	Text=("%.1fms"):format(std_dev * 3),
 	InitCommand=function(self)
 		self:x(pad + (pane_width-2*pad)/3 * 2):zoom(0.8)
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end,
 }
 
@@ -199,6 +208,9 @@ bmts[#bmts+1] = Def.BitmapText{
 	Text=("%.1fms"):format(max_error),
 	InitCommand=function(self)
 		self:x(pane_width-pad):zoom(0.8)
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end,
 }
 

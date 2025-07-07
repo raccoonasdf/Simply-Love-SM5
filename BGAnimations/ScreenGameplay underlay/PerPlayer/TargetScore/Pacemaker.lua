@@ -6,7 +6,7 @@ local pacemaker = Def.BitmapText{
 	JudgmentMessageCommand=function(self, params)
 		self:queuecommand("Update")
 		if params.Player == player and params.Notes then
-			self:zoomy(0.5):decelerate(0.1):zoomy(0.4)
+			self:zoomy(0.4):decelerate(0.1):zoomy(0.25)
 		end		
 	end,
 
@@ -54,12 +54,12 @@ if SL[pn].ActiveModifiers.Pacemaker then
 	pacemaker.InitCommand=function(self)
 
 		local isCentered = (GetNotefieldX(player) == _screen.cx)
-		local _y = 56
-		local zoomF = 0.4
+		local _y = 68
+		local zoomF = 0.25
 
 		local _x = {
-			[PLAYER_1] = GetNotefieldX(PLAYER_1) + 64,
-			[PLAYER_2] = GetNotefieldX(PLAYER_2) - 64
+			[PLAYER_1] = GetNotefieldX(PLAYER_1) + 105,
+			[PLAYER_2] = GetNotefieldX(PLAYER_2) + 95
 		}
 		if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides" then
 			_x[PLAYER_1] = _x[PLAYER_1] - 142
@@ -71,7 +71,7 @@ if SL[pn].ActiveModifiers.Pacemaker then
 			_y = 84
 		end
 
-		self:horizalign(center):zoom(zoomF):shadowlength(2.5)
+		self:horizalign(right):zoom(zoomF):shadowlength(2.5)
 		self:y(_y)
 		self:x( _x[player] )
 

@@ -19,7 +19,7 @@ return LoadFont("Common Normal")..{
 
         local textColor = Color.White
         if ThemePrefs.Get("RainbowMode") and not HolidayCheer() then
-			textColor = Color.Black
+			self:shadowlength(1)
 		end
         self:diffuse(textColor)
     end,

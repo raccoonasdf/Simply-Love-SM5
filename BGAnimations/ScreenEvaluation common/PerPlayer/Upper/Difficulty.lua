@@ -7,13 +7,13 @@ return Def.ActorFrame{
 	LoadFont("Common Normal")..{
 		InitCommand=function(self)
 			self:y(_screen.cy-64)
-			self:x(115 * (player==PLAYER_1 and -1 or 1))
+			self:x(112 * (player==PLAYER_1 and -1 or 1))
 			self:halign(pn):zoom(0.7)
 
 			local textColor = Color.White
 			local shadowLength = 0
 			if ThemePrefs.Get("RainbowMode") and not HolidayCheer() then
-				textColor = Color.Black
+				shadowLength = 1
 			end
 			self:diffuse(textColor)
 			self:shadowlength(shadowLength)
@@ -36,24 +36,35 @@ return Def.ActorFrame{
 	-- colored square as the background for the difficulty meter
 	Def.Quad{
 		InitCommand=function(self)
-			self:zoomto(30,30)
+			self:zoomto(30, 30):shadowlength(2):diffuse(Color.White)
 			self:y( _screen.cy-71 )
 			self:x(134.5 * (player==PLAYER_1 and -1 or 1))
-
+		end
+	},
+	Def.Quad{
+		InitCommand=function(self)
+			self:zoomto(26, 26):diffuse(Color.Black)
+			self:y( _screen.cy-71 )
+			self:x(134.5 * (player==PLAYER_1 and -1 or 1))			
+		end,
+		CurrentSongChangedMessageCommand=function(self) self:queuecommand("Begin") end,
+		BeginCommand=function(self)
 			local currentSteps = GAMESTATE:GetCurrentSteps(player)
 			if currentSteps then
 				local currentDifficulty = currentSteps:GetDifficulty()
-				self:diffuse( DifficultyColor(currentDifficulty), true )
+				self:diffuse(DifficultyColor(currentDifficulty))
 			end
 		end
 	},
+	
 
 	-- numerical difficulty meter
-	LoadFont("Common Bold")..{
+	LoadFont("Slab/_slab")..{
 		InitCommand=function(self)
-			self:diffuse(Color.Black):zoom( 0.4 )
-			self:y( _screen.cy-71 )
-			self:x(134.5 * (player==PLAYER_1 and -1 or 1))
+			self:zoom( 0.45 ):zoomx(0.5):maxwidth(80)
+			self:y( _screen.cy-71-1 )
+			self:x(134.5 * (player==PLAYER_1 and -1 or 1)-3)
+			self:shadowlength(2):shadowcolor(Color.Black)
 
 			local meter
 			if GAMESTATE:IsCourseMode() then
@@ -63,6 +74,9 @@ return Def.ActorFrame{
 				local steps = GAMESTATE:GetCurrentSteps(player)
 				if steps then meter = steps:GetMeter() end
 			end
+
+			local steps = GAMESTATE:GetCurrentSteps(player)
+			if steps then self:diffuse(lerp_color(0.66, DifficultyColor(steps:GetDifficulty()), Color.White)) end
 
 			if meter then self:settext(meter) end
 		end

@@ -25,8 +25,22 @@ local af = Def.ActorFrame{
 			if ThemePrefs.Get("VisualStyle") == "Technique" then
 				self:diffusealpha(0.75)
 			end
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse({1,1,1,0.5})
+			end
 		end
 	},
+	Def.Quad{
+		InitCommand=function(self)
+			self:zoomto(GraphWidth, GraphHeight):vertalign(top)
+
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse({1,1,1,0.0625}):blend("BlendMode_Subtract")
+			else
+				self:visible(false)
+			end
+		end,
+	}	
 }
 
 -- Only add the background histogram in normal gameplay.

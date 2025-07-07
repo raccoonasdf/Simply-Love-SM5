@@ -1,1 +1,3 @@
-return LoadActor("./assets/c-plus.png")..{ OnCommand=function(self) self:zoom(0.85) end }
+return Def.ActorFrame {
+    LoadFont("Slab/_slab") .. { Text="C+", InitCommand=function(self) self:zoom(2.5) end }
+}

@@ -84,17 +84,22 @@ for t in ivalues(sequential_offsets) do
 			end
 		end
 
+		local a = 0.666
+
 		-- get the red, green, and blue values from that color
+		if ThemePrefs.Get("RainbowMode") then
+			a = 1
+		end
 		r = c[1]
 		g = c[2]
 		b = c[3]
 
 		-- insert four datapoints into the verts tables, effectively generating a single quadrilateral
 		-- top left,  top right,  bottom right,  bottom left
-		table.insert( verts, {{x,y,0}, {r,g,b,0.666}} )
-		table.insert( verts, {{x+1.5,y,0}, {r,g,b,0.666}} )
-		table.insert( verts, {{x+1.5,y+1.5,0}, {r,g,b,0.666}} )
-		table.insert( verts, {{x,y+1.5,0}, {r,g,b,0.666}} )
+		table.insert( verts, {{x,y,0}, {r,g,b,a}} )
+		table.insert( verts, {{x+1.5,y,0}, {r,g,b,a}} )
+		table.insert( verts, {{x+1.5,y+1.5,0}, {r,g,b,a}} )
+		table.insert( verts, {{x,y+1.5,0}, {r,g,b,a}} )
 	else
 		-- else, a miss should be a quadrilateral that is the height of the entire graph and red
 		table.insert( verts, {{x, 0, 0}, color("#ff000077")} )

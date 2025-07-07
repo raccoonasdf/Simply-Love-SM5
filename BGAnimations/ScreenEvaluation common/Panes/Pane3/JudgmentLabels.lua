@@ -70,6 +70,10 @@ for i=1, #TapNoteScores.Types do
 					:diffuse( Colors[i] )
 
 				if i == #TapNoteScores.Types then miss_bmt = self end
+
+				if ThemePrefs.Get("RainbowMode") then
+					self:shadowlength(1):shadowcolor(lerp_color(0.5, Colors[i], Color.Black))
+				end				
 			end
 		}
 	end
@@ -80,6 +84,10 @@ t[#t+1] = LoadFont("Common Normal")..{
 	InitCommand=function(self)
 		self:y(140):zoom(0.6):halign(1)
 			:diffuse( SL.JudgmentColors[SL.Global.GameMode][6] )
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1):shadowcolor(lerp_color(0.5, SL.JudgmentColors[SL.Global.GameMode][6], Color.Black))
+		end					
 	end,
 	OnCommand=function(self)
 		self:x( miss_bmt:GetX() - miss_bmt:GetWidth()/1.15 )

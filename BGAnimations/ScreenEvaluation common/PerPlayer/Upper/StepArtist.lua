@@ -18,12 +18,12 @@ end
 local marquee_index = 0
 
 return LoadFont("Common Normal")..{
-	InitCommand=function(self) self:zoom(0.7):xy(115,_screen.cy-80) end,
+	InitCommand=function(self) self:zoom(0.7):xy(112,_screen.cy-80) end,
 	OnCommand=function(self)
 		local textColor = Color.White
 		local shadowLength = 0
 		if ThemePrefs.Get("RainbowMode") and not HolidayCheer() then
-			textColor = Color.Black
+			shadowLength = 1
 		end
 		self:diffuse(textColor)
 		self:shadowlength(shadowLength)

@@ -21,11 +21,19 @@ return Def.ActorFrame{
 			if ThemePrefs.Get("VisualStyle") == "Technique" then
 				self:diffusealpha(0.75)
 			end
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse({1,1,1,0.4})
+			end
 		end
 	},
 
 	LoadFont("Common Normal")..{
-		Text=optionslist,
-		InitCommand=function(self) self:zoom(font_zoom):xy(-140,-5):align(0,0):vertspacing(-6):_wrapwidthpixels((width-10) / font_zoom) end
+		Text=optionslist:lower(),
+		InitCommand=function(self)
+			self:zoom(font_zoom):xy(-140,-5):align(0,0):vertspacing(-6):_wrapwidthpixels((width-10) / font_zoom)
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(1)
+			end
+		end
 	}
 }

@@ -25,13 +25,13 @@ local styletype = ToEnumShortString(GAMESTATE:GetCurrentStyle():GetStyleType())
 
 -- scores are not aligned symmetrically around screen.cx for aesthetic reasons
 -- and this is the cause of many code-induced headaches
-local P1_x = _screen.cx - clamp(_screen.w, 640, 854)/4.3
+local P1_x = GetNotefieldX(PLAYER_1) + 105
 if GAMESTATE:GetCurrentStyle():GetStyleType() == "StyleType_OnePlayerTwoSides" then
 	P1_x = P1_x + SL_WideScale(22, 72)
 end
 local pos = {
 	[PLAYER_1] = { x=P1_x,  y=66 },
-	[PLAYER_2] = { x=(_screen.cx + clamp(_screen.w, 640, 854)/2.75), y=66 },
+	[PLAYER_2] = { x=GetNotefieldX(PLAYER_2) + 95, y=66 },
 }
 
 local pss = STATSMAN:GetCurStageStats():GetPlayerStageStats(player)
@@ -88,6 +88,10 @@ return LoadFont("Slab/_slab")..{
 
 		-- assume "normal" score positioning first, but there are many reasons it will need to be moved
 		self:xy( pos[player].x, pos[player].y )
+
+		if mods.Pacemaker then
+			self:y( pos[player].y - 4)
+		end
 
 		if mods.NPSGraphAtTop and styletype ~= "OnePlayerTwoSides" then
 			-- if NPSGraphAtTop and Step Statistics and not double,

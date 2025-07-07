@@ -85,9 +85,12 @@ for i=1, #TapNoteScores.Types do
 					finalZoom = 0.833 - 0.1*(length-4)
 					self:x( (controller == PLAYER_1 and finalPos) or -finalPos ):zoom(finalZoom)
 				end
-				self:y(i*26 -46)
+				self:y(i*25.6 - 45)
 				-- diffuse the JudgmentLabels the appropriate colors for the current GameMode
 				self:diffuse( TapNoteScores.Colors[i] )
+				if ThemePrefs.Get("RainbowMode") then
+					self:shadowlength(1):shadowcolor(lerp_color(0.5, TapNoteScores.Colors[i], Color.Black))
+				end
 			end
 		}
 	end
@@ -104,12 +107,13 @@ for index, label in ipairs(RadarCategories) do
 		end
 
 
-		t[#t+1] = LoadFont("Wendy/_wendy small")..{
+		t[#t+1] = LoadFont("Slab/_slab")..{
 			Text=text,
-			InitCommand=function(self) self:zoom(0.5):horizalign(right) end,
+			InitCommand=function(self) self:zoom(0.35):horizalign(right) end,
 			BeginCommand=function(self)
-				self:x( (controller == PLAYER_1 and -160) or 82 )
-				self:y(38)
+				self:x( (controller == PLAYER_1 and -148) or 96 )
+				self:y(31)
+				self:shadowlength(2)
 
 				if SL[pn].ActiveModifiers.ShowExScore then
 					self:diffuse(Color.White)
@@ -128,7 +132,10 @@ for index, label in ipairs(RadarCategories) do
 		InitCommand=function(self) self:zoom(0.833):horizalign(right) end,
 		BeginCommand=function(self)
 			self:x( (controller == PLAYER_1 and -160) or 90 )
-			self:y(index*28 + 41)
+			self:y(index*28 + 46)
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(1)
+			end
 		end
 	}
 end

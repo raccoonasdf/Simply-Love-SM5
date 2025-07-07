@@ -1,1 +1,3 @@
-return LoadActor("./assets/a-plus.png")..{ OnCommand=function(self) self:zoom(0.85) end }
+return Def.ActorFrame {
+    LoadFont("Slab/_slab") .. { Text="A+", InitCommand=function(self) self:zoom(2.5) end }
+}

@@ -19,15 +19,17 @@ return Def.ActorFrame{
 			self:diffuse( color("#101519") )
 				:y(-2)
 				:zoomto(70, 28)
-			if ThemePrefs.Get("VisualStyle") == "Technique" then
+			if ThemePrefs.Get("RainbowMode") then
+				self:diffuse({1,1,1,0.1}):blend("BlendMode_Subtract")
+			elseif ThemePrefs.Get("VisualStyle") == "Technique" then
 				self:diffusealpha(0.5)
-			end
+			end				
 		end
 	},
 
-	LoadFont("Wendy/_wendy white")..{
+	LoadFont("Slab/_slab")..{
 		Text=percent,
 		Name="Percent",
-		InitCommand=function(self) self:horizalign(right):zoom(0.25):xy( 30, -2) end,
+		InitCommand=function(self) self:horizalign(right):zoom(0.3):xy( 30, -2):shadowlength(2) end,
 	}
 }

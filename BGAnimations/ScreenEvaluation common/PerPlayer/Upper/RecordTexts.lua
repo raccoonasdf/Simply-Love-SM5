@@ -90,6 +90,9 @@ t[#t+1] = LoadFont("Common Bold")..{
 		if EarnedMachineRecord and HighScoreIndex.Machine+1 > 0 then
 			self:settext(ScreenString("MachineRecord"):format(HighScoreIndex.Machine+1))
 		end
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1):shadowcolor(lerp_color(0.5, PlayerColor(player), Color.Black))
+		end
 	end,
 }
 
@@ -100,6 +103,9 @@ t[#t+1] = LoadFont("Common Bold")..{
 		if EarnedPersonalRecord and HighScoreIndex.Personal+1 > 0 then
 			self:settext(ScreenString("PersonalRecord"):format(HighScoreIndex.Personal+1))
 		end
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1):shadowcolor(lerp_color(0.5, PlayerColor(player), Color.Black))
+		end		
 	end,
 }
 

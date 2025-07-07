@@ -150,19 +150,27 @@ pane[#pane+1] = Def.Quad{
 			:zoomto(pane_width, bottombar_height )
 			:xy(pane_width/2, 0)
 			:diffuse(color("#101519"))
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffuse({1,1,1,0.1}):blend("BlendMode_Subtract")
+		end
 	end,
 }
 
 -- centered text for W1
 pane[#pane+1] = Def.BitmapText{
 	Font="Common Normal",
-	Text=abbreviations[SL.Global.GameMode][1],
+	Text=abbreviations[SL.Global.GameMode][1]:upper(),
 	InitCommand=function(self)
 		local x = pane_width/2
 
 		self:diffuse( colors[1] )
-			:addx(x):addy(7)
+			:addx(x):addy(6)
 			:zoom(0.65)
+		
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1):shadowcolor(lerp_color(0.5, colors[1], Color.Black))
+		end
 	end,
 }
 
@@ -173,7 +181,7 @@ for i=2,num_judgments_available do
 	-- early (left) judgment text
 	pane[#pane+1] = Def.BitmapText{
 		Font="Common Normal",
-		Text=abbreviations[SL.Global.GameMode][i],
+		Text=abbreviations[SL.Global.GameMode][i]:upper(),
 		InitCommand=function(self)
 			local window = -1 * GetTimingWindow(i)
 			local better_window = -1 * GetTimingWindow(i - 1)
@@ -183,19 +191,23 @@ for i=2,num_judgments_available do
 			local x_avg = (x+x_better)/2
 
 			self:diffuse( colors[i] )
-				:addx(x_avg):addy(7)
+				:addx(x_avg):addy(6)
 				:zoom(0.65)
 			-- Hide the text if it's the same as the previous window.
 			if abbreviations[SL.Global.GameMode][i] == abbreviations[SL.Global.GameMode][i-1] then
 				self:visible(false)
 			end
+
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(1):shadowcolor(lerp_color(0.5, colors[i], Color.Black))
+			end			
 		end,
 	}
 
 	-- late (right) judgment text
 	pane[#pane+1] = Def.BitmapText{
 		Font="Common Normal",
-		Text=abbreviations[SL.Global.GameMode][i],
+		Text=abbreviations[SL.Global.GameMode][i]:upper(),
 		InitCommand=function(self)
 			local window = GetTimingWindow(i)
 			local better_window = GetTimingWindow(i - 1)
@@ -205,12 +217,16 @@ for i=2,num_judgments_available do
 			local x_avg = (x+x_better)/2
 
 			self:diffuse( colors[i] )
-				:addx(x_avg):addy(7)
+				:addx(x_avg):addy(6)
 				:zoom(0.65)
 			-- Hide the text if it's the same as the previous window.
 			if abbreviations[SL.Global.GameMode][i] == abbreviations[SL.Global.GameMode][i-1] then
 				self:visible(false)
 			end
+
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(1):shadowcolor(lerp_color(0.5, colors[i], Color.Black))
+			end	
 		end,
 	}
 
@@ -226,7 +242,9 @@ pane[#pane+1] = Def.Quad{
 			:zoomto(pane_width, topbar_height )
 			:xy(pane_width/2, -pane_height + topbar_height/2)
 			:diffuse(color("#101519"))
-		if ThemePrefs.Get("VisualStyle") == "Technique" then
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffuse({1,1,1,0.1}):blend("BlendMode_Subtract")
+		elseif ThemePrefs.Get("VisualStyle") == "Technique" then
 			self:diffusealpha(0.5)
 		end
 	end,
@@ -265,7 +283,7 @@ if next(offsets) ~= nil then
 end
 
 local label = {}
-label.y = -pane_height+20
+label.y = -pane_height+19
 label.zoom = 0.575
 label.padding = 3
 
@@ -285,6 +303,10 @@ pane[#pane+1] = Def.BitmapText{
 		if self:GetWidth() > label.max_width then
 			self:horizalign(left):x(label.padding)
 		end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end,
 }
 
@@ -299,6 +321,10 @@ pane[#pane+1] = Def.BitmapText{
 		if self:GetWidth() > label.max_width then
 			self:horizalign(left):x(label.padding)
 		end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end,
 }
 
@@ -309,6 +335,10 @@ pane[#pane+1] = Def.BitmapText{
 	InitCommand=function(self)
 		self:x(40 + (pane_width-80)/3 * 2):y(label.y)
 			:zoom(label.zoom):maxwidth(label.max_width)
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end			
 	end,
 }
 
@@ -323,6 +353,10 @@ pane[#pane+1] = Def.BitmapText{
 		if self:GetWidth() > label.max_width then
 			self:horizalign(right):x(pane_width - label.padding)
 		end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end,
 }
 
