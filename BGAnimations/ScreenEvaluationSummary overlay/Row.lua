@@ -28,7 +28,12 @@ local t = Def.ActorFrame{
 -- black quad
 t[#t+1] = Def.Quad{
 	Name="BackgroundQuad",
-	InitCommand=function(self) self:zoomto( _screen.w-40, 94):diffuse(0,0,0,0.5):y(-6) end
+	InitCommand=function(self)
+		self:zoomto( _screen.w-40, 94):diffuse(0,0,0,0.5):y(-6)
+		if ThemePrefs.Get("RainbowMode") then
+			self:diffuse({1,1,1,0.5})
+		end
+	end
 }
 
 --fallback banner
@@ -60,6 +65,9 @@ t[#t+1] = LoadFont("Common Normal")..{
 	InitCommand=function(self) self:zoom(0.8):y(-43):maxwidth(350) end,
 	DrawStageCommand=function(self)
 		if SongOrCourse then self:settext(SongOrCourse:GetDisplayFullTitle()) end
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end
 	end
 }
 
@@ -83,6 +91,10 @@ t[#t+1] = LoadFont("Common Normal")..{
 				self:settext( ("%s bpm"):format(bpms))
 			end
 		end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end
 }
 

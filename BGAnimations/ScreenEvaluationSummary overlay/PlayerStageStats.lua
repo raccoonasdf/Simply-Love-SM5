@@ -65,17 +65,17 @@ if displayProfileNames then
 end
 
 -- percent score
-af[#af+1] = LoadFont("Common Bold")..{
+af[#af+1] = LoadFont("Slab/_slab")..{
 	InitCommand=function(self) self:zoom(0.5):horizalign(align1):x(col1x):y(-24) end,
 	DrawStageCommand=function(self)
 		if playerStats and score then
 		
 			if playerStats and playerStats.showex then
-				self:zoom(0.38):horizalign(align1):x(col1x):y(-12)
+				self:zoom(0.38):horizalign(align1):x(col1x-2):y(-17)
 			else
 				self:horizalign(align1):x(col1x)
 				if playerStats and playerStats.judgments.W0 then
-					self:zoom(0.48):y(-32)
+					self:zoom(0.48):y(-37)
 				else
 					self:zoom(0.5):y(-24)
 				end
@@ -92,6 +92,10 @@ af[#af+1] = LoadFont("Common Bold")..{
 			if grade and grade == "Grade_Failed" then
 				self:diffuse(Color.Red)
 			end
+
+			if ThemePrefs.Get("RainbowMode") then
+				self:shadowlength(2)
+			end
 		else
 			self:settext("")
 		end
@@ -99,7 +103,7 @@ af[#af+1] = LoadFont("Common Bold")..{
 }
 
 --ex score
-af[#af+1] = LoadFont("Common Bold")..{
+af[#af+1] = LoadFont("Slab/_slab")..{
 	InitCommand=function(self) self:zoom(0.38):horizalign(align1):x(col1x):y(-12) end,
 	DrawStageCommand=function(self)
 		if playerStats and playerStats.judgments and playerStats.judgments.W0 then
@@ -109,10 +113,14 @@ af[#af+1] = LoadFont("Common Bold")..{
 		end
 		
 		if playerStats and playerStats.showex then
-			self:zoom(0.48):y(-32):horizalign(align1):x(col1x)
+			self:zoom(0.42):y(-37):horizalign(align1):x(col1x)
 		else
 			self:zoom(0.38):horizalign(align1):x(col1x):y(-12)
 		end
+		
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(2)
+		end		
 	end
 }
 
@@ -144,21 +152,29 @@ af[#af+1] = LoadFont("Common Normal")..{
 		end
 
 		self:settext( ("%s / %s"):format(stepstype, diff_text))
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end
 }
 
 -- difficulty meter
-af[#af+1] = LoadFont("Common Bold")..{
-	InitCommand=function(self) self:zoom(0.4):horizalign(align1):x(col1x):y(-1) end,
+af[#af+1] = LoadFont("Slab/_slab")..{
+	InitCommand=function(self) self:zoom(0.4):horizalign(align1):x(col1x-3):y(-1) end,
 	DrawStageCommand=function(self)
 		if playerStats and meter then
 			self:diffuse(DifficultyColor(difficulty)):settext(meter)
 			if playerStats.judgments and playerStats.judgments.W0 then
-				self:zoom(0.3):y(5)
+				self:zoom(0.3):y(2)
 			end
 		else
 			self:settext("")
 		end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(2)
+		end		
 	end
 }
 
@@ -171,6 +187,10 @@ af[#af+1] = LoadFont("Common Normal")..{
 		else
 			self:settext("")
 		end
+
+		if ThemePrefs.Get("RainbowMode") then
+			self:shadowlength(1)
+		end		
 	end
 }
 

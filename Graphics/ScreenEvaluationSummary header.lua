@@ -2,7 +2,7 @@ local af = Def.ActorFrame{}
 
 af[#af+1] = LoadActor( THEME:GetPathG("", "_header.lua") )
 
-af[#af+1] = LoadFont("Common Header")..{
+af[#af+1] = LoadFont("Slab/_slab")..{
 	Name="GameModeText",
 	Text=THEME:GetString("ScreenSelectPlayMode", SL.Global.GameMode),
 	InitCommand=function(self)
@@ -14,6 +14,8 @@ af[#af+1] = LoadFont("Common Header")..{
 		else
 			self:x(_screen.w - 10)
 		end
+
+		self:shadowlength(2)
 	end,
 	OnCommand=function(self)
 		self:sleep(0.1):decelerate(0.33):diffusealpha(1)
