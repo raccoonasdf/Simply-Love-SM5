@@ -41,18 +41,21 @@ end
 -- Combo fonts should be monospaced so that each digit's alignment remains
 -- consistent (i.e., not visually distracting) as the combo continually grows
 
+local zoom = 1
+
 local combo_bmt = LoadFont("_Combo Fonts/" .. combo_font .."/" .. combo_font)..{
 	Name="Number",
 	OnCommand=function(self)
-		self:shadowlength(1):vertalign(middle):zoom(0.75)
 		if combo_font == "Slab" then
-			self:x(-5):zoom(0.5)
-		end
+			self:x(-5)
+			zoom = 0.75
+		end		
+		self:shadowlength(1):vertalign(middle):zoom(zoom)
 	end,
 	ComboCommand=function(self, params)
 		self:settext( params.Combo or params.Misses or "" )
 		self:diffuseshift():effectperiod(0.8):playcommand("Color", params)
-		self:vertalign(bottom):y(self:GetHeight()/2):zoom(0.9):zoomy(1):decelerate(0.1):zoomy(0.9)
+		self:vertalign(bottom):y(self:GetHeight()/2):zoom(zoom):zoomy(zoom*1.1):decelerate(0.1):zoomy(zoom)
 	end,
 	ColorCommand=function(self, params)
 		-- Though this if/else chain may seem strange (why not reduce it to a single table for quick lookup?)
