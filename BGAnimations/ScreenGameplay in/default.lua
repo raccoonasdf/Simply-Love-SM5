@@ -18,7 +18,7 @@ end
 
 if GAMESTATE:IsCourseMode() then
 	SongsInCourse = #GAMESTATE:GetCurrentCourse():GetCourseEntries()
-	text = ("%s 1 / %d"):format(THEME:GetString("Stage", "Stage"), SongsInCourse)
+	text = ("%s 1 of %d"):format(THEME:GetString("Stage", "Stage"), SongsInCourse)
 
 elseif not PREFSMAN:GetPreference("EventMode") then
 	text = THEME:GetString("Stage", "Stage") .. " " .. tostring(SL.Global.Stages.PlayedThisGame + 1)
@@ -91,7 +91,7 @@ af[#af+1] = LoadFont("Slab/_slab")..{
 		if GAMESTATE:IsCourseMode() then
 			InitializeMeasureCounterAndModsLevel(SongNumberInCourse)
 			SongNumberInCourse = SongNumberInCourse + 1
-			self:settext(("%s %d / %d"):format(THEME:GetString("Stage", "Stage"), SongNumberInCourse, SongsInCourse))
+			self:settext(("%s %d of %d"):format(THEME:GetString("Stage", "Stage"), SongNumberInCourse, SongsInCourse))
 		end
 	end
 }

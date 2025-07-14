@@ -158,14 +158,14 @@ t[#t+1] = LoadFont("Slab/_slab")..{
 			local text
 
 			if credits.CoinsPerCredit > 1 then
-				text = ("%s     %d     %d/%d"):format(
+				text = ("%s:%d %d/%d"):format(
 					THEME:GetString("ScreenSystemLayer", "CreditsCredits"),
 					credits.Credits,
 					credits.Remainder,
 					credits.CoinsPerCredit
 				)
 			else
-				text = ("%s     %d"):format(
+				text = ("%s:%d"):format(
 					THEME:GetString("ScreenSystemLayer", "CreditsCredits"),
 					credits.Credits
 				)
