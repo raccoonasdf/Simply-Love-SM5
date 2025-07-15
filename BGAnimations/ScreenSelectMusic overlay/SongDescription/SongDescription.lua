@@ -2,11 +2,11 @@ local MusicWheel, SelectedType
 local group_durations = LoadActor("./GroupDurations.lua")
 
 -- width of background quad
-local _w = IsUsingWideScreen() and 320 or 310
+local _w = IsUsingWideScreen() and 319.97 or 310
 
 local af = Def.ActorFrame{
 	OnCommand=function(self)
-		self:xy(_screen.cx - (IsUsingWideScreen() and 170 or 165), _screen.cy - 55)
+		self:xy(_screen.cx - (IsUsingWideScreen() and 170 or 164.5), _screen.cy - 58)
 	end,
 	DisplayLanguageChangedMessageCommand=function(self) self:playcommand("Set") end,
 	CurrentSongChangedMessageCommand=function(self)    self:playcommand("Set") end,
