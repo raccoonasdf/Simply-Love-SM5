@@ -398,7 +398,7 @@ local function DiffuseText(bmt)
 	local textColor = Color.White
 	local shadowLength = 0
 	if ThemePrefs.Get("RainbowMode") and not HolidayCheer() then
-		textColor = Color.Black
+		shadowLength = 1
 	end
 	if ThemePrefs.Get("VisualStyle") == "SRPG9" then
 		textColor = color(SL.SRPG9.TextColor)
