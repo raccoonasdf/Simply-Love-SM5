@@ -44,6 +44,18 @@ local function gen_vertices(player, width, height, Steps, desaturation)
 		local blue   = {0,    0.678, 0.753, 1}
 		local purple = {0.51, 0,     0.631, 1}
 
+		local max_y = 10
+		
+		if PeakNPS >= 15.5 then
+			blue = color('#ee1300')
+			purple = color('#9c0051')
+			max_y = math.max(20, PeakNPS)
+		elseif PeakNPS >= 10.5 then
+			blue = color('#ffa82d')
+			purple = color('#f05400')
+			max_y = 15
+		end
+
 		if desaturation ~= nil then
 			local function Desaturate(color, desaturation)
 				local luma = 0.3 * color[1] + 0.59 * color[2] + 0.11 * color[3]
@@ -69,7 +81,7 @@ local function gen_vertices(player, width, height, Steps, desaturation)
 				t = TimingData:GetElapsedTimeFromBeat((i-1)*4)
 
 				x = scale(t, FirstSecond, LastSecond, 0, width)
-				y = round(-1 * scale(nps, 0, PeakNPS, 0, height))
+				y = round(-1 * scale(nps, 0, max_y, 0, height))
 
 				-- if the height of this measure is the same as the previous two measures
 				-- we don't need to add two more points (bottom and top) to the verts table,

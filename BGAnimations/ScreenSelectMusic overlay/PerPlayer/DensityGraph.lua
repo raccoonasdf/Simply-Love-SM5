@@ -192,11 +192,16 @@ af2[#af2+1] = Def.ActorFrame{
 		end,
 		RedrawCommand=function(self)
 			local textZoom = 0.8
-			self:settext(GenerateBreakdownText(pn, 0))
+			local text = GenerateBreakdownText(pn, 0)
 			local minimization_level = 1
 			while self:GetWidth() > (width/textZoom) and minimization_level < 4 do
-				self:settext(GenerateBreakdownText(pn, minimization_level))
+				text = GenerateBreakdownText(pn, minimization_level)
 				minimization_level = minimization_level + 1
+			end
+			if #text == 0 then
+				self:GetParent():queuecommand("Hide")
+			else
+				self:settext(text)
 			end
 		end,
 	}

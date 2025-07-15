@@ -197,7 +197,7 @@ GenerateBreakdownText = function(pn, minimization_level)
 	if minimization_level == 3 then
 		return string.format("%d Total", total_sum)
 	elseif #text_segments == 0 then
-		return 'No Streams!'
+		return ''
 	else
 		return table.concat(text_segments, '')
 	end
