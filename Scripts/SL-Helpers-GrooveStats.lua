@@ -488,6 +488,10 @@ CreateCommentString = function(player)
 
 	local comment = ""
 
+	if SL[pn].ActiveModifiers.ShowFaPlusWindow then
+		comment = comment .. "FA+, " .. ("%.2f"):format(CalculateExScore(player)) .. "EX"
+	end
+
 	local rate = SL.Global.ActiveModifiers.MusicRate
 	if rate ~= 1 then
 		if #comment ~= 0 then
@@ -496,8 +500,7 @@ CreateCommentString = function(player)
 		comment = comment..("%gx Rate"):format(rate)
 	end
 
-	-- Ignore the top window in all cases.
-	for i=2, 6 do
+	for i=(SL[pn].ActiveModifiers.ShowFaPlusWindow and 1 or 2), 6 do
 		local suffix = i == 6 and "m" or suffixes[i]
 		local tns = i == 6 and "TapNoteScore_Miss" or "TapNoteScore_W"..i
 		
