@@ -429,7 +429,7 @@ local Overrides = {
 			mods.ShowExScore = list[2]
 			mods.ShowFaPlusPane = list[3]
 			-- Default to FA+ pane if either options are active.
-			sl_pn.EvalPanePrimary = ((list[1] or list[2]) and list[3]) and 2 or 1
+			sl_pn.EvalPanePrimary = (SL.Global.GameMode == "ITG" and list[3]) and 2 or 1
 		end
 	},
 	-------------------------------------------------------------------------
