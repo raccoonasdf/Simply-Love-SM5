@@ -386,20 +386,7 @@ local Overrides = {
 		end
 	},
 	FaPlus = {
-		SelectType = "SelectMultiple",
-		Values = function()
-			-- 1. Still allow the player to toggle the FA+ window during gameplay in Tournament Mode since
-			--    some might find it distracting. We should still display it in step stats if it's enabled
-			--    though.
-			-- 2. EX score/ITG score is forced in Tournament Mode so remove the option.
-			-- 3. FA Plus Pane should always be shown in Tournament Mode to prevent issues with
-			--    potentially crucial information.
-			if ThemePrefs.Get("EnableTournamentMode") then
-				return { "ShowFaPlusWindow" }
-			end
-
-			return { "ShowFaPlusWindow", "ShowExScore", "ShowFaPlusPane" }
-		end,
+		Values = { "ITG", "EX" },
 		LoadSelections = function(self, list, pn)
 			local mods = SL[ToEnumShortString(pn)].ActiveModifiers
 			if ThemePrefs.Get("EnableTournamentMode") then
@@ -407,29 +394,19 @@ local Overrides = {
 				return list
 			end
 
-			list[1] = mods.ShowFaPlusWindow or false
+			list[1] = (not mods.ShowExScore) or false
 			list[2] = mods.ShowExScore or false
-			list[3] = mods.ShowFaPlusPane and true
 			return list
 		end,
 		SaveSelections = function(self, list, pn)
 			local sl_pn = SL[ToEnumShortString(pn)]
 			local mods = sl_pn.ActiveModifiers
+			local isEX = list[2] or (ThemePrefs.Get("EnableTournamentMode") and ThemePrefs.Get("ScoringSystem") == "EX")
 
-			if ThemePrefs.Get("EnableTournamentMode") then
-				mods.ShowFaPlusWindow = list[1]
-				mods.ShowExScore = ThemePrefs.Get("ScoringSystem") == "EX"
-				mods.ShowFaPlusPane = true
-				-- Default to FA+ pane in Tournament Mode
-				sl_pn.EvalPanePrimary = 2
-				return
-			end
-
-			mods.ShowFaPlusWindow = list[1]
-			mods.ShowExScore = list[2]
-			mods.ShowFaPlusPane = list[3]
-			-- Default to FA+ pane if either options are active.
-			sl_pn.EvalPanePrimary = (SL.Global.GameMode == "ITG" and list[3]) and 2 or 1
+			mods.ShowFaPlusWindow = isEX
+			mods.ShowExScore = isEX
+			mods.ShowFaPlusPane = isEX
+			sl_pn.EvalPanePrimary = isEX and 2 or 1
 		end
 	},
 	-------------------------------------------------------------------------
