@@ -12,10 +12,18 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: checkout
+        
+      - name: get commit hash
+        run: |
+          cd checkout
+          echo "short_hash=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_ENV
+      
       - name: prepare layout
         run: |
           mkdir -p artifact/Themes/"Simply Love socks fork"
           mv checkout/* artifact/Themes/"Simply Love socks fork"
+
+          sed -i 's/^Version=[^\r]*/& ${{ env.short_hash }}/' artifact/Themes/"Simply Love socks fork/ThemeInfo.ini"
 
           mv artifact/Themes/"Simply Love socks fork"/extras/NoteSkins artifact/
           rmdir artifact/Themes/"Simply Love socks fork"/extras
@@ -23,5 +31,5 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SimplyLove-socks
+          name: SimplyLove-socks-${{ env.short_hash }}
           path: artifact/
