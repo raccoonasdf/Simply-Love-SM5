@@ -10,18 +10,18 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+        with:
+          path: checkout
       - name: prepare layout
         run: |
-          shopt -s extglob
-          mkdir -p Themes/"Simply Love socks fork"
-          # ignore exit code (it'll complain that i'm trying to move Themes into itself)
-          mv * Themes/"Simply Love socks fork" || true
-          mv Themes/"Simply Love socks fork"/extras/NoteSkins .
-          rmdir Themes/"Simply Love socks fork"/extras
+          mkdir -p artifact/Themes/"Simply Love socks fork"
+          mv checkout/* artifact/Themes/"Simply Love socks fork"
+
+          mv artifact/Themes/"Simply Love socks fork"/extras/NoteSkins artifact/
+          rmdir artifact/Themes/"Simply Love socks fork"/extras
 
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: SimplyLove-socks
-          path: .
-          
+          path: artifact/
