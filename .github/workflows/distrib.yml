@@ -14,7 +14,8 @@ jobs:
         run: |
           shopt -s extglob
           mkdir -p Themes/"Simply Love socks fork"
-          mv * Themes/"Simply Love socks fork"
+          # ignore exit code (it'll complain that i'm trying to move Themes into itself)
+          mv * Themes/"Simply Love socks fork" || true
           mv Themes/"Simply Love socks fork"/extras/NoteSkins .
           rmdir Themes/"Simply Love socks fork"/extras
 
