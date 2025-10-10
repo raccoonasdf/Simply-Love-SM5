@@ -4,10 +4,13 @@ local pn = ToEnumShortString(player)
 local pacemaker = Def.BitmapText{
 	Font="Slab/_slab",
 	JudgmentMessageCommand=function(self, params)
+		-- ordering is delicate here:
+		-- if we finishtweening after queuing UpdateCommand, the settext never happens
+		self:finishtweening()
 		self:queuecommand("Update")
-		if params.Player == player and params.Notes then
+		if params.Player == player and ShouldAnimateJudgment(params) then
 			self:zoomy(0.4):decelerate(0.1):zoomy(0.25)
-		end		
+		end
 	end,
 
 	-- common logic used for both the Pacemaker text and the ActionOnTargetMissed mod

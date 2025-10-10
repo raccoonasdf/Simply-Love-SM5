@@ -137,8 +137,8 @@ return LoadFont("Slab/_slab")..{
 		end
 	end,
 	JudgmentMessageCommand=function(self, params)
-		if params.Player == player and params.Notes then
-			self:zoomy(0.6):decelerate(0.1):zoomy(0.5)
+		if params.Player == player and ShouldAnimateJudgment(params) then
+			self:finishtweening():zoomy(0.6):decelerate(0.1):zoomy(0.5)
 		end
 		self:queuecommand("RedrawScore")
 	end,

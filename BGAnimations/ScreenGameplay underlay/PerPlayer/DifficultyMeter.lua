@@ -11,8 +11,8 @@ return Def.ActorFrame{
 	end,
 
 	JudgmentMessageCommand=function(self, params)
-		if params.Player == player and params.Notes then
-			self:zoomy(1.15):decelerate(0.1):zoomy(1)
+		if params.Player == player and ShouldAnimateJudgment(params) then
+			self:finishtweening():zoomy(1.15):decelerate(0.1):zoomy(1)
 		end
 	end,
 

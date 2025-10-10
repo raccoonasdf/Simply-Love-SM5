@@ -1051,3 +1051,7 @@ TotalCourseLengthPlayed = function(player)
 	end
 end
 
+ShouldAnimateJudgment = function(params)
+	local score = ToEnumShortString(params.TapNoteScore)
+	return params.Notes and score ~= "None" and score ~= "Miss"
+end
